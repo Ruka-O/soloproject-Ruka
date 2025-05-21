@@ -10,7 +10,7 @@ function AddShops(props) {
 	const [selectSns, setSelectSns] = useState('Instagram');
 	const [inputComment, setInputComment] = useState('');
 	const [makeTag, setMakeTag] = useState('');
-	// const [addPush, setAddPush] = useState(false);
+	const [url, setUrl] = useState('');
 	const setValue = (func, e) => {
 		func(e.target.value);
 	};
@@ -21,6 +21,7 @@ function AddShops(props) {
 			store_name: storeName,
 			prefecture: storePrefecture,
 			sns_name: selectSns,
+			url: url,
 			comment: inputComment,
 			tags: tags,
 		};
@@ -43,7 +44,7 @@ function AddShops(props) {
 	return (
 		<>
 			{props.addPush ? (
-				<div className='send__detail'>
+				<div className="send__detail">
 					<p>
 						<label>店名：</label>
 						<input type="text" onChange={(e) => setValue(setStorename, e)} />
@@ -59,12 +60,16 @@ function AddShops(props) {
 								);
 							})}
 						</select>
+					</p>
+					<p>
 						<label>SNS：</label>
 						<select onChange={(e) => setValue(setSelectSns, e)}>
 							{snsList.map((sns) => {
 								return <option value={sns}>{sns}</option>;
 							})}
 						</select>
+						<label>URL：</label>
+						<input type='text' onChange={(e) => setValue(setUrl, e)}/>
 					</p>
 					<p>
 						<label>コメント：</label>

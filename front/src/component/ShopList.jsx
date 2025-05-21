@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 function ShopList(props) {
 	const [shoplist, setShoplist] = useState([]);
+	const [edit, setEdit] = useState(true);
 
 	async function getShops() {
 		const datas = await fetch('/api').then((res) => res.json());
@@ -15,11 +16,12 @@ function ShopList(props) {
 		const del = await fetch('/api', {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({id:e.target.value}),
+			body: JSON.stringify({ id: e.target.value }),
 		});
 	}
 
 	async function editData(e) {
+		setEdit(false);
 		// const edit = await fetch('/api', {
 		// 	method: 'PUT',
 		// 	headers: { 'Content-Type': 'application/json' },
@@ -30,22 +32,25 @@ function ShopList(props) {
 	return (
 		<>
 			{shoplist.map((shop) => {
+				
 				return (
 					<div className="store-list" key={shop.store_name}>
 						<h2>{shop.store_name}</h2>
 						<p>{shop.prefecture}</p>
-						<button type="button" onClick={`https://www.google.com/maps/search/?api=1&${shop.name}`}>
-							🗺️
-						</button>
-						<p>{shop.sns_name}</p>
+						{/* <a href={`https://www.google.com/maps/search/?api=1&query=${shop.store_name}`}>🗺️</a> */}
+						<a href={shop.url}>{shop.sns_name}</a>
 						<p>{shop.comment}</p>
 						<p>
 							{shop.tags.split(',').reduce((tagList, tag) => {
 								return `${tagList} #${tag}`;
 							}, '')}
 						</p>
-						<button value= {shop.id} onClick={deleteData}>🗑️</button>
-						<button value= {shop.id} onClick={editData}>✏️</button>
+						<button value={shop.id} onClick={deleteData}>
+							🗑️
+						</button>
+						{/* <button value={shop} onClick={editData}>
+							✏️
+						</button> */}
 					</div>
 				);
 			})}
