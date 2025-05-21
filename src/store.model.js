@@ -49,4 +49,14 @@ module.exports = {
 		};
 		await db(TAGS_LIST).insert(tags);
 	},
+
+	async delete(data) {
+		const id = data.id;
+		await db(TAGS_LIST).del().where("store_list_id",id);
+		await db(COMMENTS).del().where("store_list_id",id);
+		await db(PREFECTURE).del().where("store_list_id",id);
+		await db(SNS).del().where("store_list_id",id);
+		await db(STORE_LIST).del().where("id",id);
+		
+	}
 };

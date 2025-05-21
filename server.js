@@ -11,6 +11,8 @@ app.get('/api',storeController.store);
 
 app.post('/api',storeController.save);
 
+app.delete('/api', storeController.delete);
+
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
 });

@@ -12,4 +12,9 @@ module.exports = {
 		await storeModel.save(req.body);
         res.end();
 	},
+
+	async delete(req, res) {
+		await storeModel.delete(req.body);
+		res.end();
+	}
 };
