@@ -5,36 +5,19 @@ function Filter(props) {
 	const prefecture = list.data;
 
 	const [filer, setFilter] = useState(false);
-	const [storePrefecture, setStorePrefecture] = useState('');
 
 	const selectFilter = () => {
 		setFilter(true);
 	};
 
 	const filterPrefec = (e) => {
-		setStorePrefecture(e.target.value);
-		
+		props.setStorePrefecture(e.target.value);
 	};
-	
-	useEffect(() => {
-		console.log('✏️');
-		
-		(async () => {
-			const data = await fetch(`/api/${storePrefecture}`, {
-				method: 'GET',
-				headers: { 'Content-Type': 'application/json' },
-				// body: JSON.stringify({ prefecture: storePrefecture }),
-			});
-			props.setShoplist(data);
-			console.log(data);
-		})();
-		
-	}, [storePrefecture]);
 
 	return (
 		<>
 			{filer ? (
-				<>
+				<p>
 					<label>都道府県：</label>
 					<select onChange={filterPrefec}>
 						{prefecture.map((prefecture) => {
@@ -45,11 +28,13 @@ function Filter(props) {
 							);
 						})}
 					</select>
-				</>
+				</p>
 			) : (
-				<button type="button" onClick={selectFilter}>
-					filter▽
-				</button>
+				<p>
+					<button type="button" onClick={selectFilter}>
+						filter▽
+					</button>
+				</p>
 			)}
 		</>
 	);

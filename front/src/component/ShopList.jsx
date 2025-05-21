@@ -2,15 +2,28 @@ import { useState, useEffect } from 'react';
 
 function ShopList(props) {
 	// const [edit, setEdit] = useState(true);
-
+	const [shoplist, setShoplist] = useState([]);
+	const [notFind, setNotFind] = useState(false);
 	async function getShops() {
 		const datas = await fetch('/api').then((res) => res.json());
 		const reverseDatas = datas.reverse();
-		props.setShoplist(reverseDatas);
+		setShoplist(reverseDatas);
 	}
 	useEffect(() => {
 		getShops();
-	}, [props.addPush]);
+	}, [props.sendStore]);
+
+	useEffect(() => {
+		(async () => {
+			const data = await fetch(`/api/${props.storePrefecture}`, {
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' },
+			}).then((res) => res.json());
+			shoplist.length === data.length ? setNotFind(true) :setNotFind(false);
+			const reverseDatas = data.reverse();
+			setShoplist(reverseDatas);
+		})();
+	}, [props.storePrefecture]);
 
 	async function deleteData(e) {
 		await fetch('/api', {
@@ -20,19 +33,10 @@ function ShopList(props) {
 		});
 	}
 
-	// async function editData(e) {
-	// setEdit(false);
-	// const edit = await fetch('/api', {
-	// 	method: 'PUT',
-	// 	headers: { 'Content-Type': 'application/json' },
-	// 	body: JSON.stringify({id:e.target.value}),
-	// });
-	// }
-	console.log('🍓 ~ {props.shoplist.map ~ props.shoplist:', props.shoplist);
-
 	return (
 		<>
-			{props.shoplist.map((shop) => {
+		{notFind? <p>対象の結果が見つかりませんでした</p>:<></>}
+			{shoplist.map((shop) => {
 				return (
 					<div className="store-list" key={shop.store_name}>
 						<h2>{shop.store_name}</h2>

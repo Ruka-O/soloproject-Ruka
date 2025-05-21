@@ -11,39 +11,43 @@ function AddShops(props) {
 	const [inputComment, setInputComment] = useState('');
 	const [makeTag, setMakeTag] = useState('');
 	const [url, setUrl] = useState('');
+	const [addPush, setAddPush] = useState(false);
+
 	const setValue = (func, e) => {
 		func(e.target.value);
 	};
 
 	const sendDetail = async () => {
-		const tags = makeTag.replaceAll(' ', ', ');
-		const registration = {
-			store_name: storeName,
-			prefecture: storePrefecture,
-			sns_name: selectSns,
-			url: url,
-			comment: inputComment,
-			tags: tags,
-		};
-		await fetch('/api', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(registration),
-		});
-
-		props.setAddPush(false);
+		if (storeName !== '') {
+			const tags = makeTag.replaceAll(' ', ', ');
+			const registration = {
+				store_name: storeName,
+				prefecture: storePrefecture,
+				sns_name: selectSns,
+				url: url,
+				comment: inputComment,
+				tags: tags,
+			};
+			await fetch('/api', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(registration),
+			});
+			props.setSendStore(true);
+		}
+		setAddPush(false);
 	};
 	const cansel = () => {
-		props.setAddPush(false);
+		setAddPush(false);
 	};
 
 	const pushButton = () => {
-		props.setAddPush(true);
+		setAddPush(true);
 	};
 
 	return (
 		<>
-			{props.addPush ? (
+			{addPush ? (
 				<div className="send__detail">
 					<p>
 						<label>店名：</label>
@@ -79,23 +83,27 @@ function AddShops(props) {
 					</p>
 					<p>
 						<label>コメント：</label>
-						<input type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} />
+						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} />
 					</p>
 					<p>
 						<label>タグ：</label>
 						<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} />
 					</p>
-					<button type="button" onClick={sendDetail}>
-						🍓
-					</button>
-					<button type="button" onClick={cansel}>
-						🙅🏻‍♀️
-					</button>
+					<p className="input_label">
+						<button type="button" onClick={sendDetail}>
+							send🍓
+						</button>
+						<button type="button" onClick={cansel}>
+							cancel🙅🏻‍♀️
+						</button>
+					</p>
 				</div>
 			) : (
-				<button type="button" onClick={pushButton}>
-					add▽
-				</button>
+				<p>
+					<button type="button" onClick={pushButton}>
+						add▽
+					</button>
+				</p>
 			)}
 		</>
 	);
