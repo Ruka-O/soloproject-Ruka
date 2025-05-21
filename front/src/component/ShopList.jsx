@@ -19,6 +19,14 @@ function ShopList(props) {
 		});
 	}
 
+	async function editData(e) {
+		// const edit = await fetch('/api', {
+		// 	method: 'PUT',
+		// 	headers: { 'Content-Type': 'application/json' },
+		// 	body: JSON.stringify({id:e.target.value}),
+		// });
+	}
+
 	return (
 		<>
 			{shoplist.map((shop) => {
@@ -37,6 +45,7 @@ function ShopList(props) {
 							}, '')}
 						</p>
 						<button value= {shop.id} onClick={deleteData}>🗑️</button>
+						<button value= {shop.id} onClick={editData}>✏️</button>
 					</div>
 				);
 			})}

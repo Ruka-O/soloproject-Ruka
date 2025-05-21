@@ -37,7 +37,7 @@ module.exports = {
 			comment: data.comment,
 		};
 		await db(COMMENTS).insert(comment);
-		
+
 		const sns = {
 			store_list_id: newData[0].id,
 			sns_name: data.sns_name,
@@ -52,11 +52,35 @@ module.exports = {
 
 	async delete(data) {
 		const id = data.id;
-		await db(TAGS_LIST).del().where("store_list_id",id);
-		await db(COMMENTS).del().where("store_list_id",id);
-		await db(PREFECTURE).del().where("store_list_id",id);
-		await db(SNS).del().where("store_list_id",id);
-		await db(STORE_LIST).del().where("id",id);
-		
-	}
+		await db(TAGS_LIST).del().where('store_list_id', id);
+		await db(COMMENTS).del().where('store_list_id', id);
+		await db(PREFECTURE).del().where('store_list_id', id);
+		await db(SNS).del().where('store_list_id', id);
+		await db(STORE_LIST).del().where('id', id);
+	},
+
+	async update(data) {
+		const id = data.id;
+		const store = {
+			store_name: data.store_name,
+		};
+		await db(STORE_LIST).update(store).where("id",id);
+		const prefecture = {
+			prefecture: data.prefecture,
+		};
+		await db(PREFECTURE).update(prefecture).where("store_list_id",id);
+		const comment = {
+			comment: data.comment,
+		};
+		await db(COMMENTS).update(comment).where("store_list_id",id);
+
+		const sns = {
+			sns_name: data.sns_name,
+		};
+		await db(SNS).update(sns).where("store_list_id",id);
+		const tags = {
+			tags: data.tags,
+		};
+		await db(TAGS_LIST).update(tags).where("store_list_id",id);
+	},
 };
