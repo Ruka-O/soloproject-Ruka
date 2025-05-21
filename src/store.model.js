@@ -83,4 +83,15 @@ module.exports = {
 		};
 		await db(TAGS_LIST).update(tags).where("store_list_id",id);
 	},
+
+	async prefecture(data) {
+		const getData = await db(STORE_LIST)
+		.select(`${STORE_LIST}.id`, `${STORE_LIST}.registration_date`, `${STORE_LIST}.store_name`, `${PREFECTURE}.prefecture`, `${COMMENTS}.comment`, `${SNS}.sns_name`, `${SNS}.url`, `${TAGS_LIST}.tags`)
+		.leftJoin(COMMENTS, `${STORE_LIST}.id`, '=', `${COMMENTS}.store_list_id`)
+		.innerJoin(PREFECTURE, `${STORE_LIST}.id`, '=', `${PREFECTURE}.store_list_id`)
+		.innerJoin(SNS, `${STORE_LIST}.id`, '=', `${SNS}.store_list_id`)
+		.innerJoin(TAGS_LIST, `${STORE_LIST}.id`, '=', `${TAGS_LIST}.store_list_id`)
+		.where(`${PREFECTURE}.prefecture`, data);
+		return getData;
+	}
 };

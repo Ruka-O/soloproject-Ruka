@@ -6,7 +6,7 @@ function AddShops(props) {
 	const prefecture = list.data;
 	const snsList = sns.data;
 	const [storeName, setStorename] = useState('');
-	const [storePrefecture, setStorePrefecture] = useState('北海道');
+	const [storePrefecture, setStorePrefecture] = useState('');
 	const [selectSns, setSelectSns] = useState('Instagram');
 	const [inputComment, setInputComment] = useState('');
 	const [makeTag, setMakeTag] = useState('');
@@ -16,7 +16,7 @@ function AddShops(props) {
 	};
 
 	const sendDetail = async () => {
-		const tags = makeTag.replaceAll(' ', ',');
+		const tags = makeTag.replaceAll(' ', ', ');
 		const registration = {
 			store_name: storeName,
 			prefecture: storePrefecture,
@@ -65,15 +65,23 @@ function AddShops(props) {
 						<label>SNS：</label>
 						<select onChange={(e) => setValue(setSelectSns, e)}>
 							{snsList.map((sns) => {
-								return <option value={sns}>{sns}</option>;
+								return (
+									<option key={sns} value={sns}>
+										{sns}
+									</option>
+								);
 							})}
 						</select>
+					</p>
+					<p>
 						<label>URL：</label>
-						<input type='text' onChange={(e) => setValue(setUrl, e)}/>
+						<input type="text" onChange={(e) => setValue(setUrl, e)} />
 					</p>
 					<p>
 						<label>コメント：</label>
-						<input type="text" onChange={(e) => setValue(setInputComment, e)} />
+						<input type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} />
+					</p>
+					<p>
 						<label>タグ：</label>
 						<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} />
 					</p>
