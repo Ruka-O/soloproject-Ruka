@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function ShopList() {
+function ShopList(props) {
 	const [shoplist, setShoplist] = useState([]);
 
 	async function getShops() {
@@ -9,7 +9,11 @@ function ShopList() {
 	}
 	useEffect(() => {
 		getShops();
-	}, []);
+	}, [props.addPush]);
+
+	// async function deleteData() {
+		// const del = await fetch('/api').then((res) => res.json());
+	// }
 
 	return (
 		<>
@@ -19,7 +23,7 @@ function ShopList() {
 						<h2>{shop.store_name}</h2>
 						<p>{shop.prefecture}</p>
 						<button type="button" onClick={`https://www.google.com/maps/search/?api=1&${shop.name}`}>
-							map
+							🗺️
 						</button>
 						<p>{shop.sns_name}</p>
 						<p>{shop.comment}</p>
@@ -28,6 +32,7 @@ function ShopList() {
 								return `${tagList} #${tag}`;
 							}, '')}
 						</p>
+						{/* <button onClick={deleteData}>🗑️</button> */}
 					</div>
 				);
 			})}

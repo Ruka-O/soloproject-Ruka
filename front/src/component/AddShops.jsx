@@ -1,9 +1,8 @@
 import list from '../data/prefecture';
 import sns from '../data/sns';
-import shopList from '../data/shopList';
 import { useState } from 'react';
 
-function AddShops() {
+function AddShops(props) {
 	const prefecture = list.data;
 	const snsList = sns.data;
 	const [storeName, setStorename] = useState('');
@@ -11,13 +10,13 @@ function AddShops() {
 	const [selectSns, setSelectSns] = useState('Instagram');
 	const [inputComment, setInputComment] = useState('');
 	const [makeTag, setMakeTag] = useState('');
-	const [addPush, setAddPush] = useState(false);
+	// const [addPush, setAddPush] = useState(false);
 	const setValue = (func, e) => {
 		func(e.target.value);
 	};
 
 	const sendDetail = async () => {
-		const tags = makeTag.split(' ');
+		const tags = makeTag.replaceAll(' ', ',');
 		const registration = {
 			store_name: storeName,
 			prefecture: storePrefecture,
@@ -30,21 +29,20 @@ function AddShops() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(registration),
 		});
-		// shopList.push(registration);
 
-		setAddPush(false);
+		props.setAddPush(false);
 	};
 	const cansel = () => {
-		setAddPush(false);
+		props.setAddPush(false);
 	};
 
 	const pushButton = () => {
-		setAddPush(true);
+		props.setAddPush(true);
 	};
 
 	return (
 		<>
-			{addPush ? (
+			{props.addPush ? (
 				<div className='send__detail'>
 					<p>
 						<label>店名：</label>
