@@ -11,9 +11,13 @@ function ShopList(props) {
 		getShops();
 	}, [props.addPush]);
 
-	// async function deleteData() {
-		// const del = await fetch('/api').then((res) => res.json());
-	// }
+	async function deleteData(e) {
+		const del = await fetch('/api', {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({id:e.target.value}),
+		});
+	}
 
 	return (
 		<>
@@ -32,7 +36,7 @@ function ShopList(props) {
 								return `${tagList} #${tag}`;
 							}, '')}
 						</p>
-						{/* <button onClick={deleteData}>🗑️</button> */}
+						<button value= {shop.id} onClick={deleteData}>🗑️</button>
 					</div>
 				);
 			})}
