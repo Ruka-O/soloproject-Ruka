@@ -33,7 +33,8 @@ function AddShops(props) {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(registration),
 			});
-			props.setSendStore(true);
+
+			props.setSendStore((prev) => !props.sendStore);
 		}
 		setAddPush(false);
 	};
@@ -87,7 +88,7 @@ function AddShops(props) {
 
 					<label id="comment">
 						コメント：
-						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)}  />
+						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} />
 					</label>
 					<br />
 
