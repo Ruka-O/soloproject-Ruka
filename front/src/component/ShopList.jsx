@@ -33,14 +33,14 @@ function ShopList(props) {
 		getShops();
 	}
 
-	const editData = (e) => {
-		(async () => {
+	async function editData(e) {
+		
 			const data = await fetch(`/api/edit/${e.target.value}`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
 			}).then((res) => res.json());
 			props.setEditData(data[0]);
-		})();
+
 		props.setEdit(true);
 	};
 

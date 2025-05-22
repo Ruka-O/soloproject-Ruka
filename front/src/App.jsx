@@ -22,7 +22,7 @@ function App() {
 			<AddShops sendStore={sendStore} setSendStore={setSendStore} />
 			<Filter setStorePrefecture={setStorePrefecture} />
 			<ShopList sendStore={sendStore} storePrefecture={storePrefecture} setEdit={setEdit} setEditData={setEditData} />
-			<Edit edit={edit} setEdit={setEdit} editData={editData}/>
+			<Edit edit={edit} setEdit={setEdit} editData={editData} setSendStore={setSendStore} sendStore={sendStore}/>
 		</>
 	);
 }

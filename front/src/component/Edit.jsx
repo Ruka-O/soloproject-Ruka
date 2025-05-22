@@ -1,7 +1,7 @@
 import sns from '../data/sns';
 import list from '../data/prefecture';
 import Modal from 'react-modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Edit(props) {
 	const prefecture = list.data;
@@ -12,45 +12,55 @@ function Edit(props) {
 	const [inputComment, setInputComment] = useState('');
 	const [makeTag, setMakeTag] = useState('');
 	const [url, setUrl] = useState('');
+	const [sendButton, setSendButton] = useState(false);
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const data = await fetch(`/api/edit/${props.editId}`, {
-	// 			method: 'GET',
-	// 			headers: { 'Content-Type': 'application/json' },
-	// 		}).then((res) => res.json());
-	// 		setEditData(data[0]);
-            
-	// 	})();
-	// }, [props.editId]);
-    
 	const setValue = (func, e) => {
-        func(e.target.value);
+		func(e.target.value);
 	};
-    
-	const sendEdit = async () => {
-        if (storeName !== '') {
-            const tags = makeTag.replaceAll(' ', ', ');
-			const registration = {
-                store_name: storeName,
-				prefecture: storePrefecture,
-				sns_name: selectSns,
-				url: url,
-				comment: inputComment,
-				tags: tags,
-			};
-			await fetch('/api', {
-                method: 'PUT',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(registration),
-			});
-			props.setEdit(false);
+
+	useEffect(() => {
+		const tags = makeTag.replaceAll(' ', ', ');
+		const registration = {
+			id: props.editData.id,
+		};
+		if (storeName) {
+			registration.store_name = storeName;
+			setStorename('');
 		}
-	};
-    console.log("🍓 ~ data:", props.editData)
+		if (storePrefecture) {
+			registration.prefecture = storePrefecture;
+			setStorePrefecture('');
+		}
+		if (selectSns) {
+			registration.sns_name = selectSns;
+			setSelectSns('');
+		}
+		if (url) {
+			registration.url = url;
+			setUrl('');
+		}
+		if (inputComment) {
+			registration.comment = inputComment;
+			setInputComment('');
+		}
+		if (tags) {
+			registration.tags = tags;
+			setMakeTag('');
+		}
+		(async()=>{
+            await fetch('/api', {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(registration),
+		});
+		props.setEdit(false);
+        props.setSendStore((prev)=> !props.sendStore);
+		})();
+	}, [sendButton]);
+
 	return (
 		<>
-			<div id='modal'>
+			<div id="modal">
 				<Modal isOpen={props.edit}>
 					<label>店名：</label>
 					<input type="text" onChange={(e) => setValue(setStorename, e)} defaultValue={props.editData.store_name} />
@@ -93,7 +103,7 @@ function Edit(props) {
 					<br />
 
 					<p className="input_label">
-						<button type="button" onClick={sendEdit}>
+						<button type="button" onClick={() => setSendButton((prev) => !sendButton)}>
 							send🍓
 						</button>
 						<button type="button" onClick={() => props.setEdit((prev) => !props.edit)}>
