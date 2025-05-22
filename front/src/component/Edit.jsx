@@ -47,14 +47,14 @@ function Edit(props) {
 			registration.tags = tags;
 			setMakeTag('');
 		}
-		(async()=>{
-            await fetch('/api', {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(registration),
-		});
-		props.setEdit(false);
-        props.setSendStore((prev)=> !props.sendStore);
+		(async () => {
+			await fetch('/api', {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(registration),
+			});
+			props.setEdit(false);
+			props.setSendStore((prev) => !props.sendStore);
 		})();
 	}, [sendButton]);
 
@@ -62,44 +62,56 @@ function Edit(props) {
 		<>
 			<div id="modal">
 				<Modal isOpen={props.edit}>
-					<label>店名：</label>
-					<input type="text" onChange={(e) => setValue(setStorename, e)} defaultValue={props.editData.store_name} />
+					<label>
+						店名：
+						<input type="text" onChange={(e) => setValue(setStorename, e)} defaultValue={props.editData.store_name} />
+					</label>
 					<br />
 
-					<label>都道府県：</label>
-					<select onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
-						{prefecture.map((prefecture) => {
-							return (
-								<option value={prefecture} key={prefecture}>
-									{prefecture}
-								</option>
-							);
-						})}
-					</select>
+					<label>
+						都道府県：
+						<select onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
+							{prefecture.map((prefecture) => {
+								return (
+									<option value={prefecture} key={prefecture}>
+										{prefecture}
+									</option>
+								);
+							})}
+						</select>
+					</label>
 					<br />
 
-					<label>SNS：</label>
-					<select onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
-						{snsList.map((sns) => {
-							return (
-								<option key={sns} value={sns}>
-									{sns}
-								</option>
-							);
-						})}
-					</select>
+					<label>
+						SNS：
+						<select onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
+							{snsList.map((sns) => {
+								return (
+									<option key={sns} value={sns}>
+										{sns}
+									</option>
+								);
+							})}
+						</select>
+					</label>
 					<br />
 
-					<label>URL：</label>
-					<input type="text" onChange={(e) => setValue(setUrl, e)} defaultValue={props.editData.url ? props.editData.url : ''} />
+					<label>
+						URL：
+						<input type="text" onChange={(e) => setValue(setUrl, e)} defaultValue={props.editData.url ? props.editData.url : ''} />
+					</label>
 					<br />
 
-					<label>コメント：</label>
-					<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} defaultValue={props.editData.comment ? props.editData.comment : ''} />
+					<label>
+						コメント：
+						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} defaultValue={props.editData.comment ? props.editData.comment : ''} />
+					</label>
 					<br />
 
-					<label>タグ：</label>
-					<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} defaultValue={props.editData.tags} />
+					<label>
+						タグ：
+						<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} defaultValue={props.editData.tags} />
+					</label>
 					<br />
 
 					<p className="input_label">
