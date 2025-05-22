@@ -68,32 +68,28 @@ function Edit(props) {
 					</label>
 					<br />
 
-					<label>
-						都道府県：
-						<select onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
-							{prefecture.map((prefecture) => {
-								return (
-									<option value={prefecture} key={prefecture}>
-										{prefecture}
-									</option>
-								);
-							})}
-						</select>
-					</label>
+					<label>都道府県：</label>
+					<select onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
+						{prefecture.map((prefecture) => {
+							return (
+								<option value={prefecture} key={prefecture}>
+									{prefecture}
+								</option>
+							);
+						})}
+					</select>
 					<br />
 
-					<label>
-						SNS：
-						<select onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
-							{snsList.map((sns) => {
-								return (
-									<option key={sns} value={sns}>
-										{sns}
-									</option>
-								);
-							})}
-						</select>
-					</label>
+					<label>SNS：</label>
+					<select onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
+						{snsList.map((sns) => {
+							return (
+								<option key={sns} value={sns}>
+									{sns}
+								</option>
+							);
+						})}
+					</select>
 					<br />
 
 					<label>
@@ -102,9 +98,9 @@ function Edit(props) {
 					</label>
 					<br />
 
-					<label>
+					<label id="comment">
 						コメント：
-						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} defaultValue={props.editData.comment ? props.editData.comment : ''} />
+						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} defaultValue={props.editData.comment ? props.editData.comment : ''} />
 					</label>
 					<br />
 

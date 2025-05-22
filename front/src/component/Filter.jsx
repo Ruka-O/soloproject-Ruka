@@ -5,16 +5,16 @@ function Filter(props) {
 	const prefecture = list.data;
 
 	const [filer, setFilter] = useState(false);
-	
+
 	const selectFilter = () => {
-		console.log("🍓 ~ Filter ~ filer:", filer)
-		
+		console.log('🍓 ~ Filter ~ filer:', filer);
+
 		setFilter(true);
-		console.log("🍓🙅🏻‍♀️ ~ Filter ~ filer:", filer)
+		console.log('🍓🙅🏻‍♀️ ~ Filter ~ filer:', filer);
 	};
 	const closeFilter = () => {
 		setFilter(false);
-	}
+	};
 
 	const filterPrefec = (e) => {
 		props.setStorePrefecture(e.target.value);
@@ -24,17 +24,21 @@ function Filter(props) {
 		<>
 			{filer ? (
 				<p>
-					<label>都道府県：</label>
-					<select onChange={filterPrefec}>
-						{prefecture.map((prefecture) => {
-							return (
-								<option value={prefecture} key={prefecture}>
-									{prefecture}
-								</option>
-							);
-						})}
-					</select>
-					<button type='button' onClick={closeFilter}>🙅🏻‍♀️</button>
+					<label>
+						都道府県：
+						<select onChange={filterPrefec}>
+							{prefecture.map((prefecture) => {
+								return (
+									<option value={prefecture} key={prefecture}>
+										{prefecture}
+									</option>
+								);
+							})}
+						</select>
+					</label>
+					<button type="button" onClick={closeFilter}>
+						🙅🏻‍♀️
+					</button>
 				</p>
 			) : (
 				<p>

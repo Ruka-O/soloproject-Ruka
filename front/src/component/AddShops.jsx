@@ -49,46 +49,54 @@ function AddShops(props) {
 		<>
 			{addPush ? (
 				<div id="send__detail">
-					<p>
-						<label>店名：</label>
+					<label>
+						店名：
 						<input type="text" onChange={(e) => setValue(setStorename, e)} />
-					</p>
-					<p>
-						<label>都道府県：</label>
-						<select onChange={(e) => setValue(setStorePrefecture, e)}>
-							{prefecture.map((prefecture) => {
-								return (
-									<option value={prefecture} key={prefecture}>
-										{prefecture}
-									</option>
-								);
-							})}
-						</select>
-					</p>
-					<p>
-						<label>SNS：</label>
-						<select onChange={(e) => setValue(setSelectSns, e)}>
-							{snsList.map((sns) => {
-								return (
-									<option key={sns} value={sns}>
-										{sns}
-									</option>
-								);
-							})}
-						</select>
-					</p>
-					<p>
-						<label>URL：</label>
+					</label>
+					<br />
+
+					<label>都道府県：</label>
+					<select onChange={(e) => setValue(setStorePrefecture, e)}>
+						{prefecture.map((prefecture) => {
+							return (
+								<option value={prefecture} key={prefecture}>
+									{prefecture}
+								</option>
+							);
+						})}
+					</select>
+					<br />
+
+					<label>SNS：</label>
+					<select onChange={(e) => setValue(setSelectSns, e)}>
+						{snsList.map((sns) => {
+							return (
+								<option key={sns} value={sns}>
+									{sns}
+								</option>
+							);
+						})}
+					</select>
+					<br />
+
+					<label>
+						URL：
 						<input type="text" onChange={(e) => setValue(setUrl, e)} />
-					</p>
-					<p>
-						<label>コメント：</label>
-						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)} height={'6em'} />
-					</p>
-					<p>
-						<label>タグ：</label>
+					</label>
+					<br />
+
+					<label id="comment">
+						コメント：
+						<input id="comment" type="text" onChange={(e) => setValue(setInputComment, e)}  />
+					</label>
+					<br />
+
+					<label>
+						タグ：
 						<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} />
-					</p>
+					</label>
+					<br />
+
 					<p id="input_label">
 						<button type="button" onClick={sendDetail}>
 							send🍓
