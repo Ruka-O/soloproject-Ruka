@@ -24,7 +24,7 @@ function Filter(props) {
 				<p>
 					<label>
 						都道府県：
-						<select onChange={filterPrefec}>
+						<select className="select" onChange={filterPrefec}>
 							{prefecture.map((prefecture) => {
 								return (
 									<option value={prefecture} key={prefecture}>

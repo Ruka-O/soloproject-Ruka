@@ -1,23 +1,10 @@
 #root {
-	max-width: 1280px;
-	margin: 0 auto;
+	width: 50vw;
+	margin: auto;
 	padding: 2rem;
 	text-align: center;
-
+	font-size: 1.5vw;
 }
-
-/* .logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-	filter: drop-shadow(0 0 2em #61dafbaa);
-} */
 
 @keyframes logo-spin {
 	from {
@@ -34,14 +21,6 @@
 	}
 }
 
-/* .card {
-	padding: 2em;
-}
-
-.read-the-docs {
-	color: #888;
-} */
-
 .store-list {
 	background-color: antiquewhite;
 }
@@ -51,7 +30,7 @@ h1 {
 }
 
 .store-list {
-	margin: 10px;
+	margin: 10hw;
 }
 
 #send__detail {
@@ -61,43 +40,60 @@ h1 {
 }
 
 button {
-	margin: 5px;
+	margin: 1vw;
 }
 
 label {
 	display: inline-block;
-	vertical-align: top;
 	text-align: left;
-	margin-right: 5px;
-	text-align: left;
-	margin: 15px;
-	height: 25px;
+	margin-right: 1vw;
+	margin-left: 5vw;
+	margin-top: 3vh;
+	height: auto;
 }
 
-select {
-	margin: 15px;
-	height: 20px;
+.select {
+	margin-top: 3vh;
+	height: auto;
+	min-width: fit-content;
+	font-size: 1.5vw;
 }
 
 input {
+	margin-top: 3vh;
 	width: 30vw;
-	margin: 15px;
-	height: 20px;
-
+	margin: 1vw;
+	height: auto;
+	font-size: 1.5vw;
 }
 
 #comment {
 	height: 6em;
 }
 
-select {
-  width: 20%;
+#input_label {
+	text-align: center;
+}
+
+.ReactModal__Body--open {
+	display: inline-block;
+	font-size: 1.5vw;
+	background-color: #feeeed;
+	margin: auto;
+}
+
+.ReactModal__Content {
+	width: 50vw;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #modal {
-	text-align: left;
+	margin: auto;
+	width: 50vw;
 }
 
-#input_label {
+.button {
 	text-align: center;
 }

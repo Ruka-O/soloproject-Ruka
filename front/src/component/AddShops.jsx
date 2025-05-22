@@ -56,7 +56,7 @@ function AddShops(props) {
 					<br />
 
 					<label>都道府県：</label>
-					<select onChange={(e) => setValue(setStorePrefecture, e)}>
+					<select className="select" onChange={(e) => setValue(setStorePrefecture, e)}>
 						{prefecture.map((prefecture) => {
 							return (
 								<option value={prefecture} key={prefecture}>
@@ -68,7 +68,7 @@ function AddShops(props) {
 					<br />
 
 					<label>SNS：</label>
-					<select onChange={(e) => setValue(setSelectSns, e)}>
+					<select className="select" onChange={(e) => setValue(setSelectSns, e)}>
 						{snsList.map((sns) => {
 							return (
 								<option key={sns} value={sns}>
@@ -97,7 +97,7 @@ function AddShops(props) {
 					</label>
 					<br />
 
-					<p id="input_label">
+					<p className="button">
 						<button type="button" onClick={sendDetail}>
 							send🍓
 						</button>

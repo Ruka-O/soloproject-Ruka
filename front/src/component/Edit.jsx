@@ -60,8 +60,8 @@ function Edit(props) {
 
 	return (
 		<>
-			<div id="modal">
-				<Modal isOpen={props.edit}>
+			<Modal isOpen={props.edit}>
+				<div id="modal">
 					<label>
 						店名：
 						<input type="text" onChange={(e) => setValue(setStorename, e)} defaultValue={props.editData.store_name} />
@@ -69,7 +69,7 @@ function Edit(props) {
 					<br />
 
 					<label>都道府県：</label>
-					<select onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
+					<select className="select" onChange={(e) => setValue(setStorePrefecture, e)} defaultValue={props.editData.prefecture}>
 						{prefecture.map((prefecture) => {
 							return (
 								<option value={prefecture} key={prefecture}>
@@ -81,7 +81,7 @@ function Edit(props) {
 					<br />
 
 					<label>SNS：</label>
-					<select onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
+					<select className="select" onChange={(e) => setValue(setSelectSns, e)} defaultValue={props.editData.sns_name}>
 						{snsList.map((sns) => {
 							return (
 								<option key={sns} value={sns}>
@@ -110,7 +110,7 @@ function Edit(props) {
 					</label>
 					<br />
 
-					<p className="input_label">
+					<p className="button">
 						<button type="button" onClick={() => setSendButton((prev) => !sendButton)}>
 							send🍓
 						</button>
@@ -118,8 +118,8 @@ function Edit(props) {
 							cancel🙅🏻‍♀️
 						</button>
 					</p>
-				</Modal>
-			</div>
+				</div>
+			</Modal>
 		</>
 	);
 }
