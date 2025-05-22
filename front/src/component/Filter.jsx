@@ -5,10 +5,16 @@ function Filter(props) {
 	const prefecture = list.data;
 
 	const [filer, setFilter] = useState(false);
-
+	
 	const selectFilter = () => {
+		console.log("🍓 ~ Filter ~ filer:", filer)
+		
 		setFilter(true);
+		console.log("🍓🙅🏻‍♀️ ~ Filter ~ filer:", filer)
 	};
+	const closeFilter = () => {
+		setFilter(false);
+	}
 
 	const filterPrefec = (e) => {
 		props.setStorePrefecture(e.target.value);
@@ -28,6 +34,7 @@ function Filter(props) {
 							);
 						})}
 					</select>
+					<button type='button' onClick={closeFilter}>🙅🏻‍♀️</button>
 				</p>
 			) : (
 				<p>
