@@ -7,10 +7,8 @@ function Filter(props) {
 	const [filer, setFilter] = useState(false);
 
 	const selectFilter = () => {
-		console.log('🍓 ~ Filter ~ filer:', filer);
 
 		setFilter(true);
-		console.log('🍓🙅🏻‍♀️ ~ Filter ~ filer:', filer);
 	};
 	const closeFilter = () => {
 		setFilter(false);
