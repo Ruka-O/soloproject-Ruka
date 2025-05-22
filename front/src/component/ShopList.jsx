@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 function ShopList(props) {
-	// const [edit, setEdit] = useState(true);
 	const [shoplist, setShoplist] = useState([]);
 	const [notFind, setNotFind] = useState(false);
 	async function getShops() {
@@ -33,6 +32,11 @@ function ShopList(props) {
 		});
 	}
 
+	const editData= (e) => {
+		props.setEdit(true);
+		props.setEditId(e.target.value);	
+	}
+
 	return (
 		<>
 		{notFind? <p>対象の結果が見つかりませんでした</p>:<></>}
@@ -52,9 +56,9 @@ function ShopList(props) {
 						<button value={shop.id} onClick={deleteData}>
 							🗑️
 						</button>
-						{/* <button value={shop} onClick={editData}>
+						<button value={shop.id} onClick={editData}>
 							✏️
-						</button> */}
+						</button>
 					</div>
 				);
 			})}

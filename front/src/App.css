@@ -2,9 +2,11 @@
 	max-width: 1280px;
 	margin: 0 auto;
 	padding: 2rem;
+	text-align: center;
+
 }
 
-.logo {
+/* .logo {
 	height: 6em;
 	padding: 1.5em;
 	will-change: filter;
@@ -15,7 +17,7 @@
 }
 .logo.react:hover {
 	filter: drop-shadow(0 0 2em #61dafbaa);
-}
+} */
 
 @keyframes logo-spin {
 	from {
@@ -32,13 +34,13 @@
 	}
 }
 
-.card {
+/* .card {
 	padding: 2em;
 }
 
 .read-the-docs {
 	color: #888;
-}
+} */
 
 .store-list {
 	background-color: antiquewhite;
@@ -46,22 +48,20 @@
 
 h1 {
 	color: #aa4d53;
-	text-align: center;
 }
 
 .store-list {
 	margin: 10px;
-	text-align: center;
 }
 
-.send__detail {
+#send__detail {
 	background-color: #feeeed;
 	padding: 10px;
+	text-align: left;
 }
 
 button {
 	margin: 5px;
-	text-align: center;
 }
 
 label {
@@ -70,22 +70,34 @@ label {
 	text-align: left;
 	margin-right: 5px;
 	text-align: left;
+	margin: 15px;
+	height: 25px;
 }
-/* p {
-	text-align: center;
-} */
+
+select {
+	margin: 15px;
+	height: 20px;
+}
 
 input {
-	width: 70%;
+	width: 30vw;
+	margin: 15px;
+	height: 20px;
+
 }
 
 #comment {
 	height: 6em;
 }
-.input_label {
-  text-align: center;
-}
 
 select {
   width: 20%;
+}
+
+#modal {
+	text-align: left;
+}
+
+#input_label {
+	text-align: center;
 }

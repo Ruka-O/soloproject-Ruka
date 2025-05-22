@@ -48,7 +48,7 @@ function AddShops(props) {
 	return (
 		<>
 			{addPush ? (
-				<div className="send__detail">
+				<div id="send__detail">
 					<p>
 						<label>店名：</label>
 						<input type="text" onChange={(e) => setValue(setStorename, e)} />
@@ -89,7 +89,7 @@ function AddShops(props) {
 						<label>タグ：</label>
 						<input type="text" placeholder="単語をスペースで区切る" onChange={(e) => setValue(setMakeTag, e)} />
 					</p>
-					<p className="input_label">
+					<p id="input_label">
 						<button type="button" onClick={sendDetail}>
 							send🍓
 						</button>

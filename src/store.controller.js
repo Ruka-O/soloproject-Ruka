@@ -21,7 +21,7 @@ module.exports = {
 		res.end();
 	},
 
-	getPrefecture: async(req, res) => {
+	async getPrefecture(req, res) {
 		const filter = await storeModel.prefecture(req.params.prefecture);
 		if (filter[0]) {
 
@@ -31,4 +31,13 @@ module.exports = {
 			res.status(200).json(storeAll);
 		}
 	},
+
+	async findId(req, res) {
+		const find = await storeModel.id(Number(req.params.id));
+		if(find[0]) {
+			res.status(200).json(find);
+		} else {
+			res.status(404);
+		}
+	}
 };

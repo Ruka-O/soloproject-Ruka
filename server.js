@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/api', storeController.store);
 app.get('/api/:prefecture', storeController.getPrefecture);
+app.get('/api/edit/:id', storeController.findId);
 
 app.post('/api', storeController.save);
 
