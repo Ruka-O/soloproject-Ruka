@@ -18,7 +18,7 @@ function ShopList(props) {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
 			}).then((res) => res.json());
-			shoplist.length === data.length ? setNotFind(true) :setNotFind(false);
+			shoplist.length === data.length ? setNotFind(true) : setNotFind(false);
 			const reverseDatas = data.reverse();
 			setShoplist(reverseDatas);
 		})();
@@ -30,16 +30,23 @@ function ShopList(props) {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ id: e.target.value }),
 		});
+		getShops();
 	}
 
-	const editData= (e) => {
+	const editData = (e) => {
+		(async () => {
+			const data = await fetch(`/api/edit/${e.target.value}`, {
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' },
+			}).then((res) => res.json());
+			props.setEditData(data[0]);
+		})();
 		props.setEdit(true);
-		props.setEditId(e.target.value);	
-	}
+	};
 
 	return (
 		<>
-		{notFind? <p>対象の結果が見つかりませんでした</p>:<></>}
+			{notFind ? <p>対象の結果が見つかりませんでした</p> : <></>}
 			{shoplist.map((shop) => {
 				return (
 					<div className="store-list" key={shop.store_name}>

@@ -11,7 +11,8 @@ function App() {
 	const [sendStore, setSendStore] = useState(false);
 	const [storePrefecture, setStorePrefecture] = useState('');
 	const [edit, setEdit] = useState(false);
-	const [editId, setEditId] = useState('');
+	const [editData, setEditData] = useState({});
+
 
 	return (
 		<>
@@ -20,8 +21,8 @@ function App() {
 			</div>
 			<AddShops sendStore={sendStore} setSendStore={setSendStore} />
 			<Filter setStorePrefecture={setStorePrefecture} />
-			<ShopList sendStore={sendStore} storePrefecture={storePrefecture} setEdit={setEdit} setEditId={setEditId} />
-			<Edit edit={edit} setEdit={setEdit} editId={editId}/>
+			<ShopList sendStore={sendStore} storePrefecture={storePrefecture} setEdit={setEdit} setEditData={setEditData} />
+			<Edit edit={edit} setEdit={setEdit} editData={editData}/>
 		</>
 	);
 }
