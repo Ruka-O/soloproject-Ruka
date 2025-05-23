@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 function ShopList(props) {
 	const [shoplist, setShoplist] = useState([]);
-	const [notFind, setNotFind] = useState(false);
 	async function getShops() {
 		const datas = await fetch('/api').then((res) => res.json());
 		const reverseDatas = datas.reverse();
@@ -18,7 +17,7 @@ function ShopList(props) {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
 			}).then((res) => res.json());
-			shoplist.length === data.length ? setNotFind(true) : setNotFind(false);
+			shoplist.length === data.length ? props.setNotFind(true) : props.setNotFind(false);
 			const reverseDatas = data.reverse();
 			setShoplist(reverseDatas);
 		})();
@@ -45,7 +44,7 @@ function ShopList(props) {
 
 	return (
 		<>
-			{notFind ? <p>対象の結果が見つかりませんでした</p> : <></>}
+			{props.notFind ? <p>対象の結果が見つかりませんでした</p> : <></>}
 			{shoplist.map((shop) => {
 				return (
 					<div className="store-list" key={shop.store_name}>

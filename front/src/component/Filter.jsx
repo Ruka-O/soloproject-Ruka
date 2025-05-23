@@ -12,6 +12,8 @@ function Filter(props) {
 	};
 	const closeFilter = () => {
 		setFilter(false);
+		props.setSendStore((prev) => !props.sendStore);
+		props.setNotFind(false);
 	};
 
 	const filterPrefec = (e) => {
