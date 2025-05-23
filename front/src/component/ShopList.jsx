@@ -43,31 +43,33 @@ function ShopList(props) {
 	}
 
 	return (
-		<div className='list'>
+		<>
 			{props.notFind ? <p>対象の結果が見つかりませんでした</p> : <></>}
-			{shoplist.map((shop) => {
-				return (
-					<div className="store-list" key={shop.store_name}>
-						<h2>{shop.store_name}</h2>
-						<p>{shop.prefecture}</p>
-						{/* <a href={`https://www.google.com/maps/search/?api=1&query=${shop.store_name}`}>🗺️</a> */}
-						<a href={shop.url}>{shop.sns_name}</a>
-						<p>{shop.comment}</p>
-						<p>
-							{shop.tags.split(', ').reduce((tagList, tag) => {
-								return `${tagList} #${tag}`;
-							}, '')}
-						</p>
-						<button value={shop.id} onClick={deleteData}>
-							🗑️
-						</button>
-						<button value={shop.id} onClick={editData}>
-							✏️
-						</button>
-					</div>
-				);
-			})}
-		</div>
+			<div className="list">
+				{shoplist.map((shop) => {
+					return (
+						<div className="store-list" key={shop.store_name}>
+							<h2>{shop.store_name}</h2>
+							<p>{shop.prefecture}</p>
+							{/* <a href={`https://www.google.com/maps/search/?api=1&query=${shop.store_name}`}>🗺️</a> */}
+							<a href={shop.url}>{shop.sns_name}</a>
+							<p>{shop.comment}</p>
+							<p>
+								{shop.tags.split(', ').reduce((tagList, tag) => {
+									return `${tagList} #${tag}`;
+								}, '')}
+							</p>
+							<button value={shop.id} onClick={deleteData}>
+								🗑️
+							</button>
+							<button value={shop.id} onClick={editData}>
+								✏️
+							</button>
+						</div>
+					);
+				})}
+			</div>
+		</>
 	);
 }
 
