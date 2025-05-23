@@ -1,5 +1,5 @@
 #root {
-	width: 50vw;
+	width: 100vw;
 	margin: auto;
 	padding: 2rem;
 	text-align: center;
@@ -23,14 +23,13 @@
 
 .store-list {
 	background-color: antiquewhite;
+	margin: 10hw;
+	width: 30vw;
+	text-align: center;
 }
 
 h1 {
 	color: #aa4d53;
-}
-
-.store-list {
-	margin: 10hw;
 }
 
 #send__detail {
@@ -84,16 +83,25 @@ input {
 
 .ReactModal__Content {
 	width: 50vw;
-	height: auto;
+	height: 60vh;
 	margin-left: auto;
 	margin-right: auto;
+	background-color: #feeeed;
 }
 
 #modal {
 	margin: auto;
 	width: 50vw;
+	background-color: #fffff9;
 }
 
 .button {
 	text-align: center;
+}
+
+.list {
+	display: flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	gap: 5vw;
 }

@@ -43,7 +43,7 @@ function ShopList(props) {
 	}
 
 	return (
-		<>
+		<div className='list'>
 			{props.notFind ? <p>対象の結果が見つかりませんでした</p> : <></>}
 			{shoplist.map((shop) => {
 				return (
@@ -67,7 +67,7 @@ function ShopList(props) {
 					</div>
 				);
 			})}
-		</>
+		</div>
 	);
 }
 
