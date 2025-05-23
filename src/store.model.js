@@ -40,6 +40,7 @@ module.exports = {
 		const sns = {
 			store_list_id: newData[0].id,
 			sns_name: data.sns_name,
+			url: data.url,
 		};
 		await db(SNS).insert(sns);
 		const tags = {
@@ -82,6 +83,12 @@ module.exports = {
 		if (key.indexOf('sns_name') === 1) {
 			const sns = {
 				sns_name: data.sns_name,
+			};
+			await db(SNS).update(sns).where('store_list_id', id);
+		}
+		if (key.indexOf('url') === 1) {
+			const sns = {
+				url: data.url,
 			};
 			await db(SNS).update(sns).where('store_list_id', id);
 		}
